@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "passport_demo",
+    "password": "ecZ4khM4G26T3eAz1h0q",
+    "database": "leftoverWizard_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
