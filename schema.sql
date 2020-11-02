@@ -16,4 +16,6 @@ CREATE TABLE recipes(
     name VARCHAR(255),
     link VARCHAR(255),
     recipe JSON
+    owner_id INT,
+    FOREING KEY (owner_id) REFERENCES Users(id)
 );
