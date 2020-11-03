@@ -22,4 +22,4 @@ function SearchbyIngredientQuery(ingredients) {
     })
 }
 
-module.exports = SearchbyIngredientQuery()
+module.exports = SearchbyIngredientQuery;
