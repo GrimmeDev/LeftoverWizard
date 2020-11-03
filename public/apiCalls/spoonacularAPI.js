@@ -4,8 +4,9 @@
 ///findByIngredients?ingredients=apples,+flour,+sugar&number=2
 
 // var ingredients = 
+const numOfRecipes = 5; // We want 5 recipes to show up
 var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" +
-        ingredients + "&number=2";
+        ingredients + "&number="+ numOfRecipes + "";
       // Performing an AJAX request with the queryURL
       $.ajax({
         url: queryURL,
