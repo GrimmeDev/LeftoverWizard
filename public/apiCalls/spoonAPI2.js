@@ -4,12 +4,11 @@
 // https://api.spoonacular.com/recipes/716429/information?includeNutrition=false
 
 // var recipeID = 
-var queryURL = " https://api.spoonacular.com/recipes/" +
-        recipeID + "/information?includeNutrition=false";
-      // Performing an AJAX request with the queryURL
-$.ajax({
-url: queryURL,
-method: "GET"
+const nutValues = false;
+var queryURL = "https://api.spoonacular.com/recipes/" + recipeID + "/information?includeNutrition="+ nutValues;
+$.ajax({ // Performing an AJAX request with the queryURL
+  url: queryURL,
+  method: "GET"
 }).then(function(response) {
     console.log(response);
     const recipeTitle = response.title;

@@ -5,23 +5,20 @@
 
 // var ingredients = 
 const numOfRecipes = 5; // We want 5 recipes to show up
-var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" +
-        ingredients + "&number="+ numOfRecipes + "";
-      // Performing an AJAX request with the queryURL
-      $.ajax({
-        url: queryURL,
-        method: "GET"
+const rankingNum = 2; // 1 for maximizing used ingredients, 2 for minimizing missing ingredients
+var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredients + "&number="+ numOfRecipes + "&ranking="+ rankingNum;
+$.ajax({  // Performing an AJAX request with the queryURL
+  url: queryURL,
+  method: "GET"
+}).then(function(response) {
+      console.log(response);
+      const map1 = response.map(function(response){
+          const recipeID = response.id;
+          const recipeTitle = response.title;
+          const recipeImage = response.image;
+
+          
       })
-        // After data comes back from the request
-        .then(function(response) {
-            console.log(response);
-            const map1 = response.map(function(response){
-                const recipeID = response.id;
-                const recipeTitle = response.title;
-                const recipeImage = response.image;
 
-                
-            })
-
-        })
+  })
 
