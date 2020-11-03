@@ -112,9 +112,13 @@
   </div>
 
 </body>
-<script src="./apiCalls//spoonacularAPI.js"></script>
+<script src="./apiCalls/spoonacularAPI.js"></script>
 <script type="text/javascript">
-  $(".searchRecipe").on("click", function (search) {
+  async function getAPIKey() {
+    return await $.get("/api/spoon");
+  }
+
+  $(".searchRecipe").on("click", async function (search) {
     search.preventDefault();
 
     var input = $(".searchBar").val().trim();
@@ -122,12 +126,8 @@
     ingredients = ingredientsArr.join(",+");
 
     // call to spoonacularAPI.js
-    $.getScript("./public/apiCalls/spoonacularAPI.js", success(response, status));
-
-    function success(response, status) {
-      console.log('response==>>', response)
-      console.log('status==>>', status)
-    }
+    results = await SearchbyIngredientQuery(ingredients, await getAPIKey());
+    console.log(results);
   })
 </script>
 
