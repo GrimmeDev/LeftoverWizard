@@ -7,22 +7,18 @@
 var queryURL = " https://api.spoonacular.com/recipes/" +
         recipeID + "/information?includeNutrition=false";
       // Performing an AJAX request with the queryURL
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
-        // After data comes back from the request
-        .then(function(response) {
-            var results = response.data;
-            console.log(results);
-            const map1 = results.map(function(results){
-                const recipeTitle = results.title;
-                const recipeImage = results.image;
-                const recipeSourceLink = results.sourceUrl;
-                const spoonacularURL = results.spoonacularSourceUrl;
-                const readyTime = results.readyInMinutes;
-                
-            })
+$.ajax({
+url: queryURL,
+method: "GET"
+}).then(function(response) {
+    console.log(response);
+    const recipeTitle = response.title;
+    const recipeImage = response.image;
+    const recipeSourceLink = response.sourceUrl;
+    const spoonacularURL = response.spoonacularSourceUrl;
+    const readyTime = response.readyInMinutes;
+        
+    
 
-        })
+})
 

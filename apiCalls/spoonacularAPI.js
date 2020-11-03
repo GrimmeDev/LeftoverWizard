@@ -13,12 +13,11 @@ var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredient
       })
         // After data comes back from the request
         .then(function(response) {
-            var results = response.data;
-            console.log(results);
-            const map1 = results.map(function(results){
-                const recipeID = results.id;
-                const recipeTitle = results.title;
-                const recipeImage = results.image;
+            console.log(response);
+            const map1 = response.map(function(response){
+                const recipeID = response.id;
+                const recipeTitle = response.title;
+                const recipeImage = response.image;
 
                 
             })
