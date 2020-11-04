@@ -71,6 +71,7 @@
 </body>
 <script src="./apiCalls/spoonacularAPI.js"></script>
 <script src="./apiCalls/spoonAPI2.js"></script>
+<!-- <script src="../views/fullRecipe.view.js"></script> -->
 <script type="text/javascript">
   async function getAPIKey() {
     return await $.get("/api/spoon");
@@ -102,13 +103,30 @@
       $(document).on("click", "a.viewRecipe", async function (event) {
         if ($(this).attr("id") == recipes[i].id) {
           event.preventDefault();
+          $("#resultDisplay").empty();
           // console.log($(this));
           console.log('button ID==>>', $(this).attr("id"));
           let btnID = $(this).attr("id")
           recipe = await SearchbyRecipeID(btnID, await getAPIKey());
           console.log('recipe==>>', recipe);
+          const { title, image, sourceUrl, cookingMinutes, extendedIngredients, summary } = recipe;
+          const steps = extendedIngredients[0].steps;
+
+
           // obj.analyzedInstructions[0].steps[i] where I is index of the instructions
-          $("#resultDisplay").append(viewFullRecipe(recipe));
+          // $("#resultDisplay").append(viewFullRecipe(recipe));
+          var element = `
+            <div class="jumbotron-fluid">
+              <h2> ${title} </h2>
+              <img src=${image} class="card-img-top" alt="dish_image">
+              <p class="card-text">Cook Time:${cookingMinutes} </p>
+              <p class="card-text">Instructions:</p>
+              <p class="card-text"> 
+                  <a href=${sourceUrl} class="btn btn-primary">Go to source</a>
+              </p>
+            </div>
+          `;
+          $("#resultDisplay").append(element);
         }
       })
     }
