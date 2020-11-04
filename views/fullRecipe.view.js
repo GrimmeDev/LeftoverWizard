@@ -1,6 +1,13 @@
+const e = require("express");
+
 function viewFullRecipe(response) {
     const { title, image, sourceUrl, cookingMinutes, extendedIngredients, summary } = response;
-
+    const steps = extendedIngredients[0].steps;
+    const dispSteps = function () {
+        for(let i = 0; i < steps.length;i++){
+            return /*html*/`<p> ${steps[i].number}): ${steps[i].step} </p>`
+        }
+    }
     return /*html*/`
     <!DOCTYPE html>
     <html lang="en">
@@ -17,27 +24,17 @@ function viewFullRecipe(response) {
     <body>
         <div class="container">
             <div class="row">
-                <h2> LEFTOVER WIZARD </h2>
+                <div class="jumbotron-fluid">
+                    <h2> ${title} </h2>
+                    <img src=${image} class="card-img-top" alt="dish_image">
+                    <p class="card-text">Cook Time:${cookingMinutes} </p>
+                    <p class="card-text">Instructions:</p>
+                    ${dispSteps}
+                    <p class="card-text"> 
+                        <a href=${sourceUrl} class="btn btn-primary">Go to source</a>
+                    </p>
+                </div>       
             </div>
-
-            <div class="row">
-                <h2> ${response.title} </h2>
-            </div>
-
-            <div class="card-deck row">
-                <div class="card">
-                    <img src=${response.image} class="card-img-top" alt="dish_image">
-                    <div class="card-body">
-                        <h5 class="card-title">${response.title}</h5>
-                        <p class="card-text">Cook Time:${response.readyInMinutes} </p>
-                        <p class="card-text">Instructions:${response.instructions} </p>
-                        <p class="card-text"> 
-                            <a href=${response.spoonacularSourceUrl} class="btn btn-primary">Go to source</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </body>
     <script src=""></script>    

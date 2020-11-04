@@ -63,6 +63,9 @@
         </div>
       </div> -->
     </div>
+    <div class="row" id="resultDisplay">
+
+    </div>
   </div>
 
 </body>
@@ -104,6 +107,7 @@
           let btnID = $(this).attr("id")
           recipe = await SearchbyRecipeID(btnID, await getAPIKey());
           console.log('recipe==>>', recipe);
+          // obj.analyzedInstructions[0].steps[i] where I is index of the instructions
         }
       })
     }
