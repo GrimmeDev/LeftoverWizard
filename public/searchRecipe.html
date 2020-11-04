@@ -51,13 +51,10 @@
       </form>
     </div>
     <div class="row">
-
       <h2> RECIPE WITH 'Ingredient' </h2>
-
     </div>
-
     <div class="card-deck row">
-      <div class="card">
+      <!-- <div class="card">
         <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Recipe #1</h5>
@@ -65,55 +62,16 @@
             content. This content is a little bit longer.</p>
           <p class="card-text"> <a href="#" class="btn btn-primary">Add to my list</a></p>
         </div>
-      </div>
-
-      <div class="card card1">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Recipe #2</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          <p class="card-text"><a href="#" class="btn btn-primary button2">Add to my list</a></p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Recipe #3</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content. This card has even longer content than the first to show that equal height action.</p>
-          <p class="card-text"><a href="#" class="btn btn-primary">Add to my list</a></p>
-        </div>
-      </div>
-
-
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Recipe #4</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          <p class="card-text"><a href="#" class="btn btn-primary">Add to my list</a></p>
-        </div>
-      </div>
-
-      <div class="card card1">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Recipe #5</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          <p class="card-text"><a href="#" class="btn btn-primary button1">Add to my list</a></p>
-        </div>
-      </div>
-
-
+      </div> -->
+    </div>
+    <div class="row" id="resultDisplay">
 
     </div>
-
-
   </div>
 
 </body>
 <script src="./apiCalls/spoonacularAPI.js"></script>
+<script src="./apiCalls/spoonAPI2.js"></script>
 <script type="text/javascript">
   async function getAPIKey() {
     return await $.get("/api/spoon");
@@ -127,9 +85,34 @@
     ingredients = ingredientsArr.join(",+");
 
     // call to spoonacularAPI.js
-    results = await SearchbyIngredientQuery(ingredients, await getAPIKey());
-    console.log(results);
-  });
+    recipes = await SearchbyIngredientQuery(ingredients, await getAPIKey());
+    // logs results of API call
+    console.log(recipes);
+    // generate dynamic elements to display results on page
+    for (let i = 0; i < recipes.length; i++) {
+      var element = `
+        <div class="card">
+            <img src="${recipes[i].image}" class="card-img-top" alt="${recipes[i].title}">
+              <div class="card-body">
+                <h5 class="card-title">${recipes[i].title}</h5>
+                <p class="card-text"> <a href="#" class="btn btn-primary viewRecipe" id="${recipes[i].id}">View Full Recipe</a></p>
+              </div>
+          </div>
+        `
+      $(".card-deck").append(element);
+      $(document).on("click", "a.viewRecipe", async function (event) {
+        if ($(this).attr("id") == recipes[i].id) {
+          event.preventDefault();
+          // console.log($(this));
+          console.log('button ID==>>', $(this).attr("id"));
+          let btnID = $(this).attr("id")
+          recipe = await SearchbyRecipeID(btnID, await getAPIKey());
+          console.log('recipe==>>', recipe);
+          // obj.analyzedInstructions[0].steps[i] where I is index of the instructions
+        }
+      })
+    }
+  })
 </script>
 
 </html>
