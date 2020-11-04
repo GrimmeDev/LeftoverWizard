@@ -2,3 +2,57 @@
 form.login {
   margin-top: 50px;
 } */
+
+.button1{
+  border-radius: 30px;
+  background: #79afd7;
+  box-shadow: inset 14px 14px 28px #6795b7, 
+              inset -14px -14px 28px #8bc9f7;
+
+  color: whitesmoke;
+
+
+}
+
+.button2{
+  border-radius: 30px;
+background: #e16e51;
+box-shadow:  9px 9px 18px #ad553e, 
+             -9px -9px 18px #ff8764;
+}
+
+
+.background{
+  background: url(1306038.jpg) no-repeat fixed center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100% ;
+  text-align: center;
+
+}
+
+.background2{
+  background: url(1306263.jpg) no-repeat fixed center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100% ;
+  text-align: center;
+
+}
+
+
+
+
+.card1{
+  border-radius: 30px;
+  background: #79afd7;
+  box-shadow:  14px 14px 28px #6795b7, 
+               -14px -14px 28px #8bc9f7;
+
+}

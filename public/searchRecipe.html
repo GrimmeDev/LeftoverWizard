@@ -9,11 +9,12 @@
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link href="stylesheets/style.css" rel="stylesheet">
 
 </head>
 
 <body>
-  <header class="shadow-sm">
+  <header class="shadow-sm ">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -32,7 +33,7 @@
       </div>
     </nav>
   </header>
-  <div class="container">
+  <div class="container background3">
 
     <div class="row">
 
@@ -46,7 +47,7 @@
           <label for="exampleInputEmail1">Type your Ingredient</label>
           <input type="input" class="form-control searchBar" id="ingridient">
         </div>
-        <button type="submit" class="btn btn-primary searchRecipe">Search Recipe</button>
+        <button type="submit" class="btn btn-primary searchRecipe button1 imgButton">Search Recipe</button>
       </form>
     </div>
     <div class="row">
@@ -66,12 +67,12 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card card1">
         <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Recipe #2</h5>
           <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          <p class="card-text"><a href="#" class="btn btn-primary">Add to my list</a></p>
+          <p class="card-text"><a href="#" class="btn btn-primary button2">Add to my list</a></p>
         </div>
       </div>
 
@@ -95,12 +96,12 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card card1">
         <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Recipe #5</h5>
           <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          <p class="card-text"><a href="#" class="btn btn-primary">Add to my list</a></p>
+          <p class="card-text"><a href="#" class="btn btn-primary button1">Add to my list</a></p>
         </div>
       </div>
 
@@ -128,7 +129,7 @@
     // call to spoonacularAPI.js
     results = await SearchbyIngredientQuery(ingredients, await getAPIKey());
     console.log(results);
-  })
+  });
 </script>
 
 </html>
