@@ -11,15 +11,4 @@ async function SearchbyIngredientQuery(ingredients, API) {
     url: queryURL,
     method: "GET"
   })
-  // .then(function (response) {
-  //   console.log(response);
-  //   const map1 = response.map(function (response) {
-  //     const recipeID = response.id;
-  //     const recipeTitle = response.title;
-  //     const recipeImage = response.image;
-
-
-  //   })
-
-  // })
 }

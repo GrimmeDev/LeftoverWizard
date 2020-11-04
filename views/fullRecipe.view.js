@@ -1,5 +1,5 @@
-function viewFullRecipe(response){
-    const {id, title, image, sourceUrl, spoonacularSourceUrl, readyInMinutes, instrctions} = response;
+function viewFullRecipe(response) {
+    const { title, image, sourceUrl, cookingMinutes, extendedIngredients, summary } = response;
 
     return /*html*/`
     <!DOCTYPE html>

@@ -67,6 +67,7 @@
 
 </body>
 <script src="./apiCalls/spoonacularAPI.js"></script>
+<script src="./apiCalls/spoonAPI2.js"></script>
 <script type="text/javascript">
   async function getAPIKey() {
     return await $.get("/api/spoon");
@@ -95,10 +96,14 @@
           </div>
         `
       $(".card-deck").append(element);
-      $(document).on("click", "a.viewRecipe", function () {
+      $(document).on("click", "a.viewRecipe", async function (event) {
         if ($(this).attr("id") == recipes[i].id) {
           event.preventDefault();
-          console.log($(this));
+          // console.log($(this));
+          console.log('button ID==>>', $(this).attr("id"));
+          let btnID = $(this).attr("id")
+          recipe = await SearchbyRecipeID(btnID, await getAPIKey());
+          console.log('recipe==>>', recipe);
         }
       })
     }
