@@ -108,6 +108,7 @@
           recipe = await SearchbyRecipeID(btnID, await getAPIKey());
           console.log('recipe==>>', recipe);
           // obj.analyzedInstructions[0].steps[i] where I is index of the instructions
+          $("#resultDisplay").append(viewFullRecipe(recipe));
         }
       })
     }
