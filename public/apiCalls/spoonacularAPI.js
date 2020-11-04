@@ -5,7 +5,8 @@
 async function SearchbyIngredientQuery(ingredients, API) {
   const numOfRecipes = 5; // We want 5 recipes to show up
   const rankingNum = 2; // 1 for maximizing used ingredients, 2 for minimizing missing ingredients
-  var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredients + "&number=" + numOfRecipes + "&ranking=" + rankingNum + "&apiKey=" + API;
+  let queryURL = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&number=${numOfRecipes}&ranking=${rankingNum}&apiKey=${API}`;
+  // var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredients + "&number=" + numOfRecipes + "&ranking=" + rankingNum + "&apiKey=" + API;
   return await $.ajax({  // Performing an AJAX request with the queryURL
     url: queryURL,
     method: "GET"

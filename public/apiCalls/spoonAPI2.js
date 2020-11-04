@@ -2,10 +2,11 @@
 
 //example api call for getting info on a specific recipe with ID: 
 // https://api.spoonacular.com/recipes/716429/information?includeNutrition=false
-function SearchbyRecipeID(recipeID) {
+function SearchbyRecipeID(recipeID, API) {
   // var recipeID = 
   const nutValues = false;
-  var queryURL = "https://api.spoonacular.com/recipes/" + recipeID + "/information?includeNutrition="+ nutValues;
+  let queryURL = `https://api.spoonacular.com/recipes/${recipeID}/information?includeNutrition=${nutValues}&apiKey=${API}`;
+  // var queryURL = "https://api.spoonacular.com/recipes/" + recipeID + "/information?includeNutrition="+ nutValues+ "&apiKey=" + API;
   $.ajax({ // Performing an AJAX request with the queryURL
     url: queryURL,
     method: "GET"
