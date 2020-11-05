@@ -69,7 +69,7 @@ box-shadow:  9px 9px 18px #ad553e,
 
 
 @keyframes tipsy {
- 0 {
+ 0% {
  transform: translateX(-50%) translateY(-50%) rotate(0deg);
   }
 100% {

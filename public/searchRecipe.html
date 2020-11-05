@@ -93,7 +93,7 @@
     // logs results of API call
     console.log(recipes);
    var title = `<h2 class=" fontwhite"> RECIPE WITH ${input} </h2>`
-   $(".rowIngredient").append(title);
+   $(".card-deck").append(title);
     // generate dynamic elements to display results on page
     $(".card-deck").empty();
     for (let i = 0; i < recipes.length; i++) {
