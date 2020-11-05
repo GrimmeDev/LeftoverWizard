@@ -10,7 +10,7 @@
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
-<body class="background2">
+<body class="members-bg">
   <header class="shadow-sm">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -45,13 +45,13 @@
     </div>
     <!-- Div below displays recipe cards -->
     <div class="row row1">
-         
+
 
     </div>
 
 
     <div class="card-deck row">
-         
+
 
     </div>
     <!-- div below displays selected recipe information -->
@@ -81,14 +81,14 @@
       recipes = await SearchbyIngredientQuery(ingredients, await getAPIKey());
       // logs results of API call
       // console.log(recipes);
-     
+
       // generate dynamic elements to display results on page
       $(".row1").empty();
       $(".card-deck").empty();
-      
+
       var title = `<h2 class=" fontwhite"> RECIPE WITH ${input} </h2>`
       $(".row1").append(title);
-      
+
       for (let i = 0; i < recipes.length; i++) {
         var recipeSample = `
           <div class="card card1">
@@ -100,7 +100,7 @@
             </div>
           `
         $(".card-deck").append(recipeSample);
-       
+
         $(document).on("click", "a.viewRecipe", async function (event) {
           if ($(this).attr("id") == recipes[i].id) {
             event.preventDefault();
