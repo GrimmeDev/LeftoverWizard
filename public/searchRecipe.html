@@ -53,20 +53,12 @@
         <button type="submit" class="btn btn-primary searchRecipe button1 imgButton">Search Recipe</button>
       </form>
     </div>
-    <div class="row rowIngredient">
-      <!--<h2 class=" fontwhite"> RECIPE WITH 'Ingredient' </h2> -->
-    </div>
+    <!-- <div class="row rowIngredient">
+    </div> -->
+    <!-- Div below displays recipe cards -->
     <div class="card-deck row">
-      <!-- <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Recipe #1</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
-          <p class="card-text"> <a href="#" class="btn btn-primary">Add to my list</a></p>
-        </div>
-      </div> -->
     </div>
+    <!-- div below displays selected recipe information -->
     <div class="row" id="resultDisplay">
 
     </div>
@@ -75,7 +67,6 @@
 </body>
 <script src="./apiCalls/spoonacularAPI.js"></script>
 <script src="./apiCalls/spoonAPI2.js"></script>
-<!-- <script src="../views/fullRecipe.view.js"></script> -->
 <script type="text/javascript">
   async function getAPIKey() {
     return await $.get("/api/spoon");
