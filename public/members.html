@@ -133,7 +133,7 @@
                 <p class="pInstructions">${instructions}</p>
                 <p class="card-text"> 
                     <a href=${sourceUrl} class="btn btn-primary button1" target="_blank" id="link">Go to source</a>
-                    <a href="/api/save" class="btn btn-primary button1">Save Recipe</a>
+                    <a class="btn btn-primary button1 saveRecipe">Save Recipe</a>
                 </p>
                 </div>
               </div>
@@ -141,6 +141,23 @@
   
             `;
             $("#resultDisplay").append(recipeDetails);
+
+            $(document).on("click", "a.saveRecipe", function () {
+              // get userID for API saving
+              $.get("/api/user_data").then(data => {
+                UserId = data.id;
+                name = title;
+                link = sourceUrl;
+                // console.log('userID==>>', UserId);
+                // console.log('title==>>', name)
+                // console.log('sourceURL==>>', link)
+                // console.log('recipe==>>', recipe)
+                $.post("/api/save", { name, link, recipe, UserId }, function () {
+                  alert(`Saved ${title}!`)
+                  $(".saveRecipe").addClass("invisible");
+                })
+              })
+            })
           }
         })
       }

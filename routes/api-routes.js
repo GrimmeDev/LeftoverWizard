@@ -54,7 +54,8 @@ module.exports = function (app) {
   });
 
   app.post("/api/save", function (req, res) {
-    db.recipe.create({ title: req.body.title }, { link: req.body.sourceURL }, { Jrecipe: req.body.recipe })
+    // console.log('requestData==>>', req.body )
+    db.Recipe.create(req.body)
     .then(dbRecipe=>{
       console.log("Saved Recipe: ", dbRecipe)
     })
