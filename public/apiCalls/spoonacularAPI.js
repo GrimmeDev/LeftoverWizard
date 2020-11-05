@@ -12,3 +12,4 @@ async function SearchbyIngredientQuery(ingredients, API) {
     method: "GET"
   })
 }
+
