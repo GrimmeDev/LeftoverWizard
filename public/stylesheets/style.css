@@ -35,7 +35,32 @@ box-shadow:  9px 9px 18px #ad553e,
 
 
 .background{
-  background: url(1306038.jpg) no-repeat fixed center;
+  /* background: url(1306038.jpg) no-repeat fixed center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100% ;
+  text-align: center; */
+
+  /* background-color: #2e2e3163; */
+
+}
+
+.search-bg{
+  background: url("../images/ingredients.jpg") no-repeat fixed center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100% ;
+  text-align: center;
+
+}
+.signup-bg{
+  background: url("../images/egg-chef.jpg") no-repeat fixed center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -46,8 +71,19 @@ box-shadow:  9px 9px 18px #ad553e,
 
 }
 
-.background2{
-  background: url(1306263.jpg) no-repeat fixed center;
+.login-bg {
+  background: url("../images/digital-chef.jpg") no-repeat fixed center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100% ;
+  text-align: center;
+}
+
+.members-bg{
+  background: url("../images/smoke-wizard-chef.jpg") no-repeat fixed center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

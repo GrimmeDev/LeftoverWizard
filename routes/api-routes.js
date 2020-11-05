@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+const { query } = require("express");
 require('dotenv').config();
 
 module.exports = function (app) {
@@ -16,6 +17,16 @@ module.exports = function (app) {
     res.json(req.user);
   });
 
+  app.get("/api/recipes", function(req,res){
+    let query={};
+    if(req.query.UserId){
+      query.UserId = req.user.id;
+    }
+    console.log('query==>>', query )
+    db.Recipe.findAll({
+      where: query
+    }).then(recipes=>res.json(recipes));
+  })
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -54,7 +65,8 @@ module.exports = function (app) {
   });
 
   app.post("/api/save", function (req, res) {
-    db.recipe.create({ title: req.body.title }, { link: req.body.sourceURL }, { Jrecipe: req.body.recipe })
+    // console.log('requestData==>>', req.body )
+    db.Recipe.create(req.body)
     .then(dbRecipe=>{
       console.log("Saved Recipe: ", dbRecipe)
     })

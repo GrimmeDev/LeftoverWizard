@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="background2">
+<body class="search-bg">
   <header class="shadow-sm ">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -102,50 +102,7 @@
               </div>
           </div>
         `
-        // below line would go in line 94
-        //<p class="card-text"> <a href="#" class="btn btn-primary viewRecipe button1" id="${recipes[i].id}">View Full Recipe</a></p>
       $(".card-deck").append(element);
-      // $(document).on("click", "a.viewRecipe", async function (event) {
-      //   if ($(this).attr("id") == recipes[i].id) {
-      //     event.preventDefault();
-      //     $("#resultDisplay").empty();
-      //     // console.log($(this));
-      //     // console.log('button ID==>>', $(this).attr("id"));
-      //     let btnID = $(this).attr("id")
-      //     recipe = await SearchbyRecipeID(btnID, await getAPIKey());
-      //     console.log('recipe==>>', recipe);
-      //     const { title, image, sourceUrl, cookingMinutes, instructions, extendedIngredients, summary } = recipe;
-      //     const ings = extendedIngredients;
-      //     console.log('ingredients==>>', ings);
-      //     // grab ings[i].
-      //     //      original
-      //     let ingDisplay = ``;
-      //     for (let i = 0; i < ings.length; i++) {
-      //       ingDisplay += `<li>${ings[i].original}`;
-      //     }
-      //     var element = `
-      //       <div class="grid-container">
-      //        <div class="grid-item item1"><h2>${title}</h2></div>
-      //        <div class="grid-item item2"><img src=${image} class="img1" width="460" height="345"></div>
-      //        <div class="grid-item item3">
-      //         <p class="pIngredient">Ingredients:</p>
-      //         <ul>
-      //           ${ingDisplay}
-      //           </ul>
-      //         </div>  
-      //        <div class="grid-item item5"><p class="pIngredient">Instruction</p>
-      //         <p class="pInstructions">${instructions}</p>
-      //         <p class="card-text"> 
-      //             <a href=${sourceUrl} class="btn btn-primary button1" target="_blank">Go to source</a>
-      //         </p>
-      //         </div>
-      //       </div>
-
-
-      //     `;
-      //     $("#resultDisplay").append(element);
-      //   }
-      // })
     }
   })
 </script>
