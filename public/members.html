@@ -16,9 +16,6 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <ul class="nav nav-tabs">
-           <!-- <li class="nav-item">
-              <a class="nav-link " href="/">Sign Up</a>
-            </li>-->
             <li class="nav-item ">
               <a class="nav-link active" href="/logout">Logout</a>
             </li>
@@ -37,11 +34,104 @@
         <h2 class="fontwhite">Welcome <span class="member-name"></span></h2>
       </div>
     </div>
+    <div class="row">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1" class="fontwhite">Type your Ingredient</label>
+          <input type="input" class="form-control searchBar" id="ingridient">
+        </div>
+        <button type="submit" class="btn btn-primary searchRecipe button1 imgButton">Search Recipe</button>
+      </form>
+    </div>
+    <!-- Div below displays recipe cards -->
+    <div class="card-deck row">
+    </div>
+    <!-- div below displays selected recipe information -->
+    <div class="row" id="resultDisplay">
+
+    </div>
+  </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="./apiCalls/spoonacularAPI.js"></script>
+  <script src="./apiCalls/spoonAPI2.js"></script>
   <script type="text/javascript" src="js/members.js"></script>
+  <script type="text/javascript">
+    async function getAPIKey() {
+      return await $.get("/api/spoon");
+    }
 
+    $(".searchRecipe").on("click", async function (search) {
+      search.preventDefault();
+
+      var input = $(".searchBar").val().trim();
+      ingredientsArr = input.split(/[.,\/ -]/);
+      ingredients = ingredientsArr.join(",+");
+
+      // call to spoonacularAPI.js
+      recipes = await SearchbyIngredientQuery(ingredients, await getAPIKey());
+      // logs results of API call
+      // console.log(recipes);
+      var title = `<h2 class=" fontwhite"> RECIPE WITH ${input} </h2>`
+      $(".card-deck").append(title);
+      // generate dynamic elements to display results on page
+      $(".card-deck").empty();
+      for (let i = 0; i < recipes.length; i++) {
+        var element = `
+          <div class="card card1">
+              <img src="${recipes[i].image}" class="card-img-top" alt="${recipes[i].title}">
+                <div class="card-body">
+                  <h5 class="card-title">${recipes[i].title}</h5>
+                  <p class="card-text"> <a href="#" class="btn btn-primary viewRecipe button1" id="${recipes[i].id}">View Full Recipe</a></p>
+                </div>
+            </div>
+          `
+        $(".card-deck").append(element);
+        $(document).on("click", "a.viewRecipe", async function (event) {
+          if ($(this).attr("id") == recipes[i].id) {
+            event.preventDefault();
+            $("#resultDisplay").empty();
+            // console.log($(this));
+            // console.log('button ID==>>', $(this).attr("id"));
+            let btnID = $(this).attr("id")
+            recipe = await SearchbyRecipeID(btnID, await getAPIKey());
+            console.log('recipe==>>', recipe);
+            const { title, image, sourceUrl, cookingMinutes, instructions, extendedIngredients, summary } = recipe;
+            const ings = extendedIngredients;
+            console.log('ingredients==>>', ings);
+            // grab ings[i].
+            //      original
+            let ingDisplay = ``;
+            for (let i = 0; i < ings.length; i++) {
+              ingDisplay += `<li>${ings[i].original}`;
+            }
+            var element = `
+              <div class="grid-container">
+               <div class="grid-item item1"><h2>${title}</h2></div>
+               <div class="grid-item item2"><img src=${image} class="img1" width="460" height="345"></div>
+               <div class="grid-item item3">
+                <p class="pIngredient">Ingredients:</p>
+                <ul>
+                  ${ingDisplay}
+                  </ul>
+                </div>  
+               <div class="grid-item item5"><p class="pIngredient">Instruction</p>
+                <p class="pInstructions">${instructions}</p>
+                <p class="card-text"> 
+                    <a href=${sourceUrl} class="btn btn-primary button1" target="_blank">Go to source</a>
+                </p>
+                </div>
+              </div>
+  
+  
+            `;
+            $("#resultDisplay").append(element);
+          }
+        })
+      }
+    })
+  </script>
 </body>
 
 </html>
