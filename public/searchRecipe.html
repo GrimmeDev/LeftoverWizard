@@ -13,45 +13,48 @@
 
 </head>
 
-<body>
+<body class="background2">
   <header class="shadow-sm ">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
           <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="/">Sign Up</a>
+            <li class="nav-item navbar1">
+              <a class="nav-link " href="/">Sign Up</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navbar1">
               <a class="nav-link" href="/login">Log In</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Search Recipes</a>
+              <a class="nav-link active" href="#">Search Recipes</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
-  <div class="container background3">
+  <p class="around">Leftover Wizard</p>
+
+  
+  <div class="container background">
 
     <div class="row">
 
-      <h2> LEFTOVER WIZARD </h2>
+      <h2 class="fontwhite"> Find Recipes </h2>
 
     </div>
 
     <div class="row">
       <form>
         <div class="form-group">
-          <label for="exampleInputEmail1">Type your Ingredient</label>
+          <label for="exampleInputEmail1" class="fontwhite">Type your Ingredient</label>
           <input type="input" class="form-control searchBar" id="ingridient">
         </div>
         <button type="submit" class="btn btn-primary searchRecipe button1 imgButton">Search Recipe</button>
       </form>
     </div>
-    <div class="row">
-      <h2> RECIPE WITH 'Ingredient' </h2>
+    <div class="row rowIngredient">
+      <!--<h2 class=" fontwhite"> RECIPE WITH 'Ingredient' </h2> -->
     </div>
     <div class="card-deck row">
       <!-- <div class="card">
@@ -89,14 +92,17 @@
     recipes = await SearchbyIngredientQuery(ingredients, await getAPIKey());
     // logs results of API call
     console.log(recipes);
+   var title = `<h2 class=" fontwhite"> RECIPE WITH ${input} </h2>`
+   $(".rowIngredient").append(title);
     // generate dynamic elements to display results on page
+    $(".card-deck").empty();
     for (let i = 0; i < recipes.length; i++) {
       var element = `
-        <div class="card">
+        <div class="card card1">
             <img src="${recipes[i].image}" class="card-img-top" alt="${recipes[i].title}">
               <div class="card-body">
                 <h5 class="card-title">${recipes[i].title}</h5>
-                <p class="card-text"> <a href="#" class="btn btn-primary viewRecipe" id="${recipes[i].id}">View Full Recipe</a></p>
+                <p class="card-text"> <a href="#" class="btn btn-primary viewRecipe button1" id="${recipes[i].id}">View Full Recipe</a></p>
               </div>
           </div>
         `
@@ -110,22 +116,38 @@
           let btnID = $(this).attr("id")
           recipe = await SearchbyRecipeID(btnID, await getAPIKey());
           console.log('recipe==>>', recipe);
-          const { title, image, sourceUrl, cookingMinutes, extendedIngredients, summary } = recipe;
+          const { title, image, sourceUrl, cookingMinutes, instructions, extendedIngredients, summary } = recipe;
           const steps = extendedIngredients[0].steps;
 
 
           // obj.analyzedInstructions[0].steps[i] where I is index of the instructions
           // $("#resultDisplay").append(viewFullRecipe(recipe));
-          var element = `
-            <div class="jumbotron-fluid">
-              <h2> ${title} </h2>
-              <img src=${image} class="card-img-top" alt="dish_image">
-              <p class="card-text">Cook Time:${cookingMinutes} </p>
-              <p class="card-text">Instructions:</p>
+         // var element = `
+         //   <div class=" jumbotron-fluid">
+         //     <h2 class="fontwhite"> ${title} </h2>
+         //     <img src=${image} class="card-img-top" alt="dish_image">
+         //     <p class="card-text">Cook Time:${cookingMinutes} </p>
+         //     <p class="card-text">Instructions:</p>
+         //     <p class="card-text"> 
+         //         <a href=${sourceUrl} class="btn btn-primary button1">Go to source</a>
+         //     </p>
+         //   </div>
+            var element = `
+            <div class="grid-container">
+             <div class="grid-item item1"><h2>${title}</h2></div>
+             <div class="grid-item item2"><img src=${image} class="img1" width="460" height="345"></div>
+             <div class="grid-item item3"><p class="pIngredient">Cook Time:${cookingMinutes} minutes </p><br>
+              <p class="pIngredient">Ingredients:</p>
+              </div>  
+             <div class="grid-item item5"><p class="pIngredient">Instruction</p>
+              <p class="pInstructions">${instructions}</p>
               <p class="card-text"> 
-                  <a href=${sourceUrl} class="btn btn-primary">Go to source</a>
+                  <a href=${sourceUrl} class="btn btn-primary button1" target="_blank">Go to source</a>
               </p>
+              </div>
             </div>
+
+
           `;
           $("#resultDisplay").append(element);
         }

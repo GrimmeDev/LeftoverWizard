@@ -10,29 +10,31 @@
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="background2">
   <header class="shadow-sm">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Sign Up</a>
+              <a class="nav-link active " href="#">Sign Up</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navbar1">
               <a class="nav-link" href="/login">Log In</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navbar1">
               <a class="nav-link" href="/searchRecipe">Search Recipes</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  </header>
+   </header>
+  <p class="around">Leftover Wizard</p>
+  
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+     <div class="row">
+      <div class="col-md-6 col-md-offset-3 fontwhite">
         <h2>Sign Up Form</h2>
         <form class="signup">
           <div class="form-group">
@@ -47,7 +49,7 @@
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
-          <button type="submit" class="btn btn-default">Sign Up</button>
+          <button type="submit" class="btn btn-default button1">Sign Up</button>
         </form>
         <br />
         <p>Or log in <a href="/login">here</a></p>
