@@ -78,7 +78,7 @@
       // generate dynamic elements to display results on page
       $(".card-deck").empty();
       for (let i = 0; i < recipes.length; i++) {
-        var element = `
+        var recipeSample = `
           <div class="card card1">
               <img src="${recipes[i].image}" class="card-img-top" alt="${recipes[i].title}">
                 <div class="card-body">
@@ -87,7 +87,7 @@
                 </div>
             </div>
           `
-        $(".card-deck").append(element);
+        $(".card-deck").append(recipeSample);
         $(document).on("click", "a.viewRecipe", async function (event) {
           if ($(this).attr("id") == recipes[i].id) {
             event.preventDefault();
@@ -119,14 +119,15 @@
                <div class="grid-item item5"><p class="pIngredient">Instruction</p>
                 <p class="pInstructions">${instructions}</p>
                 <p class="card-text"> 
-                    <a href=${sourceUrl} class="btn btn-primary button1" target="_blank">Go to source</a>
+                    <a href=${sourceUrl} class="btn btn-primary button1" target="_blank" id="link">Go to source</a>
+                    <a href="/api/save" class="btn btn-primary button1">Save Recipe</a>
                 </p>
                 </div>
               </div>
   
   
             `;
-            $("#resultDisplay").append(element);
+            $("#resultDisplay").append(recipeDetails);
           }
         })
       }
