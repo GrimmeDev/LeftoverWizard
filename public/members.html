@@ -100,6 +100,7 @@
             </div>
           `
         $(".card-deck").append(recipeSample);
+       
         $(document).on("click", "a.viewRecipe", async function (event) {
           if ($(this).attr("id") == recipes[i].id) {
             event.preventDefault();
