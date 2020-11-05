@@ -5,12 +5,12 @@ $(document).ready(
         // recipes[i].name and recipes[i].link are the info we need
         let list = ``;
         for (let i = 0; i < recipes.length; i++) {
-            list += `<li><p>Name: ${recipes[i].name} </p><p> Link: ${recipes[i].link}</p></li>`;
+            list += `<div class="grid-item"><p>Name: ${recipes[i].name} </p><p> Link: ${recipes[i].link}</p></div>`;
         }
         var userRecipes = `
-                <ol>
+                <div class="row grid-container">
                     ${list}
-                </ol>
+                </div>
             `;
         $(".card-deck").append(userRecipes);
     })
