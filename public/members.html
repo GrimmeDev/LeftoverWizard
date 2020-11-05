@@ -28,7 +28,7 @@
     </nav>
   </header>
   <p class="around">Leftover Wizard</p>
-  <div class="container">
+  <div class="container background">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h2 class="fontwhite">Welcome <span class="member-name"></span></h2>
@@ -77,6 +77,8 @@
       $(".card-deck").append(title);
       // generate dynamic elements to display results on page
       $(".card-deck").empty();
+      
+      
       for (let i = 0; i < recipes.length; i++) {
         var element = `
           <div class="card card1">
@@ -112,7 +114,7 @@
                <div class="grid-item item2"><img src=${image} class="img1" width="460" height="345"></div>
                <div class="grid-item item3">
                 <p class="pIngredient">Ingredients:</p>
-                <ul>
+                <ul class="pInstructions">
                   ${ingDisplay}
                   </ul>
                 </div>  
