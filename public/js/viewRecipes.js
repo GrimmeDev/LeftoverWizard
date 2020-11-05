@@ -5,7 +5,7 @@ $(document).ready(
         // recipes[i].name and recipes[i].link are the info we need
         let list = ``;
         for (let i = 0; i < recipes.length; i++) {
-            list += `<li>Name: ${recipes[i].name} - Link: ${recipes[i].link}</li>`;
+            list += `<li><p>Name: ${recipes[i].name} </p><p> Link: ${recipes[i].link}</p></li>`;
         }
         var userRecipes = `
                 <ol>
