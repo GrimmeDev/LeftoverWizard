@@ -54,6 +54,8 @@
       </form>
     </div>
     <!-- Div below displays recipe cards -->
+    <div class="row row1">
+    </div>
     <div class="card-deck row">
     </div>
     <!-- div below displays selected recipe information -->
@@ -81,10 +83,15 @@
     recipes = await SearchbyIngredientQuery(ingredients, await getAPIKey());
     // logs results of API call
     // console.log(recipes);
-    var title = `<h2 class=" fontwhite"> RECIPE WITH ${input} </h2>`
-    $(".card-deck").append(title);
+    
     // generate dynamic elements to display results on page
+    $(".row1").empty();
     $(".card-deck").empty();
+
+    var title = `<h2 class=" fontwhite"> RECIPE WITH ${input} </h2>
+    <p >Log In if you want to see the Recipe</p>`
+      $(".row1").append(title);
+      
     for (let i = 0; i < recipes.length; i++) {
       var element = `
         <div class="card card1">
