@@ -1,3 +1,5 @@
+// Sequelize layout of what data gets stored when a User saves a recipe
+
 module.exports = function (sequelize, DataTypes) {
     var Recipe = sequelize.define("Recipe", {
         // name
@@ -16,6 +18,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     });
+    // Associates the recipe to a specific user
     Recipe.associate = function (models) {
         Recipe.belongsTo(models.User, {
             foreignKey: {

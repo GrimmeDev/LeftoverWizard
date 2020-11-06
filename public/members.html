@@ -59,21 +59,25 @@
 
     </div>
   </div>
-
+<!-- Script links for needed scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="./apiCalls/spoonacularAPI.js"></script>
   <script src="./apiCalls/spoonAPI2.js"></script>
   <script type="text/javascript" src="js/members.js"></script>
   <script type="text/javascript">
+  // Function to get the API key stored in a .env file
     async function getAPIKey() {
       return await $.get("/api/spoon");
     }
 
     $(".searchRecipe").on("click", async function (search) {
+      // Prevents the search button from being fired elsewhere on the page
       search.preventDefault();
-
+      // Grabs initial value of the search field
       var input = $(".searchBar").val().trim();
+      // REGEX to remove any seperators the user may have given
       ingredientsArr = input.split(/[.,\/ -]/);
+      // joining the array into a singular string in the format required for spoonacular
       ingredients = ingredientsArr.join(",+");
 
       // call to spoonacularAPI.js
@@ -81,14 +85,16 @@
       // logs results of API call
       // console.log(recipes);
 
-      // generate dynamic elements to display results on page
+      // Empties the results areas every time a search is performed
       $(".row1").empty();
       $(".card-deck").empty();
 
+      // Displays recipe title pulled from search results
       var title = `<h2 class=" fontwhite"> RECIPE WITH ${input} </h2>`
       $(".row1").append(title);
-
+      // For loop going through the results of the API to generate a card for each result
       for (let i = 0; i < recipes.length; i++) {
+        // Grabs only the recipe image and name, generates a button with the recipe ID taken from the API for use later
         var recipeSample = `
           <div class="card card1">
               <img src="${recipes[i].image}" class="card-img-top" alt="${recipes[i].title}">
@@ -99,25 +105,35 @@
             </div>
           `
         $(".card-deck").append(recipeSample);
-
+        // used so dynamically generated buttons will still be clickable
+        // targeting a links with the class of viewRecipe
         $(document).on("click", "a.viewRecipe", async function (event) {
+          // compares the button clicked attribute to the ID value of the recipe
           if ($(this).attr("id") == recipes[i].id) {
+            // prevents additional firing of the button
             event.preventDefault();
+            // empties the results display of the recipe info
             $("#resultDisplay").empty();
             // console.log($(this));
             // console.log('button ID==>>', $(this).attr("id"));
+            // stores the ID of the button in a variable
             let btnID = $(this).attr("id")
+            // call to our second API with the recipe ID and API key
             recipe = await SearchbyRecipeID(btnID, await getAPIKey());
             // console.log('recipe==>>', recipe);
+            // deconstructs the results to grab only the info we want to display
             const { title, image, sourceUrl, cookingMinutes, instructions, extendedIngredients, summary } = recipe;
             const ings = extendedIngredients;
             // console.log('ingredients==>>', ings);
             // grab ings[i].
             //      original
             let ingDisplay = ``;
+            // for loop for ingredients to be displayed as singular list items instead of an object item
             for (let i = 0; i < ings.length; i++) {
               ingDisplay += `<li>${ings[i].original}`;
             }
+            // will display recipe name, image, ingredients, instructions, and create a button linking to the webpage hosting the recipe
+            // also creates a button that will allow a user to save the recipe to see later
             var recipeDetails = `
               <div class="grid-container">
                <div class="grid-item item1"><h2 id="title">${title}</h2></div>
@@ -141,19 +157,25 @@
             `;
 
             $("#resultDisplay").append(recipeDetails);
-
+            // targets dynamically generated a tags with the class of save recipe
             $(document).on("click", "a.saveRecipe", function () {
               // get userID for API saving
               $.get("/api/user_data").then(data => {
+                // stores the currently logged in user ID
                 UserId = data.id;
+                // gets the name of the recipe
                 name = title;
+                // grabs the link to the webpage hosting the recipe
                 link = sourceUrl;
                 // console.log('userID==>>', UserId);
                 // console.log('title==>>', name)
                 // console.log('sourceURL==>>', link)
                 // console.log('recipe==>>', recipe)
+                // sends the name, link, and recipe object (received on line 122), and the User ID to be saved
                 $.post("/api/save", { name, link, recipe, UserId }, function () {
+                  // alerts out that the recipe was saved
                   alert(`Saved ${title}!`)
+                  // hides the save button on success
                   $(".saveRecipe").addClass("invisible");
                 })
               })
